@@ -10,7 +10,7 @@ import { ColorLabel } from './color-label.entity';
 
 @Entity('colors')
 export class Color {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Column({ unique: true })
@@ -21,6 +21,15 @@ export class Color {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column()
+  code: number;
+
+  @Column({ nullable: true })
+  rgb: string | null;
+
+  @Column()
+  name: string;
 
   @OneToMany(() => ColorLabel, (label) => label.color, {
     cascade: true,
