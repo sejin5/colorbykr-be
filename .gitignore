@@ -41,9 +41,10 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.local
-.dev.env
+.env.dev
 
 orm.config.ts
+docker-compose.yml
 
 # temp directory
 .temp

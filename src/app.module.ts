@@ -4,22 +4,24 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from 'orm.config';
+import { ColorsModule } from './colors/colors.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
         process.env.NODE_ENV === 'production'
-          ? '.prod.env'
+          ? '.env.prod'
           : process.env.NODE_ENV === 'stage'
-            ? '.stage.env'
-            : '.dev.env',
+            ? '.env.stage'
+            : '.env.dev',
       ],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       useFactory: ormConfig,
     }),
+    ColorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
